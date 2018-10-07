@@ -41,44 +41,41 @@ class SmartCalculator {
   }
 
   valueOf(){
-    var x = this.str.slice();
+    let arrX = this.str.slice();
     // по степеням с право на лево
-    for (var i = x.length - 1; i > 0; i--){
-      if (x[i] == '^') {
-        x[i - 1] = Math.pow(x[i - 1], x[i + 1]);
-        x.splice(i, 2); // сместить на пустующие теперь две клетки
+    for (let i = arrX.length - 1; i > 0; i--){
+      if (arrX[i] == '^') {
+        arrX[i - 1] = Math.pow(arrX[i - 1], arrX[i + 1]);
+        arrX.splice(i, 2); // сместить на пустующие теперь две клетки
       } 
     }
     // по умножению и делению
-    for (var i = x.length - 1; i > 0; i--) {
-      if (x[i] == '*') {
-        x[i - 1] = x[i - 1] * x[i + 1];
-        x.splice(i, 2); // сместить на пустующие теперь две клетки
+    for (let i = arrX.length - 1; i > 0; i--) {
+      if (arrX[i] == '*') {
+        arrX[i - 1] = arrX[i - 1] * arrX[i + 1];
+        arrX.splice(i, 2); // сместить на пустующие теперь две клетки
         continue; 
       }
-      if (x[i] == '/') {
-        x[i - 1] = x[i - 1] / x[i + 1];
-        x.splice(i, 2); // сместить на пустующие теперь две клетки
+      if (arrX[i] == '/') {
+        arrX[i - 1] = arrX[i - 1] / arrX[i + 1];
+        arrX.splice(i, 2); // сместить на пустующие теперь две клетки
       }
     }
     // сложение и вычетание
-    for (var i = 0; i < x.length; i++) {
-      if (x[i] == '+') {
-        x[i - 1] = x[i - 1] + x[i + 1];
-        x.splice(i, 2); // сместить на пустующие теперь две клетки
+    for (let i = 0; i < arrX.length; i++) {
+      if (arrX[i] == '+') {
+        arrX[i - 1] = arrX[i - 1] + arrX[i + 1];
+        arrX.splice(i, 2); // сместить на пустующие теперь две клетки
         i--;
         continue; 
       }
-      if (x[i] == '-') {
-        x[i - 1] = x[i - 1] - x[i + 1];
-        x.splice(i, 2); // сместить на пустующие теперь две клетки
+      if (arrX[i] == '-') {
+        arrX[i - 1] = arrX[i - 1] - arrX[i + 1];
+        arrX.splice(i, 2); // сместить на пустующие теперь две клетки
         i--;
       }
     }
-    return  x[0];
+    return  arrX[0];
   }
-  
-
 }
-
 module.exports = SmartCalculator;
